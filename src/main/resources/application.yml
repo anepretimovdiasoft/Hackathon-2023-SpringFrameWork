@@ -1,0 +1,25 @@
+# Конфигурационный файл
+spring:
+
+  # Подключение к H2 бд через jdbc
+  datasource:
+    url: jdbc:h2:mem:testdb
+
+  # Включение консоли
+  h2:
+    console:
+      #enabled: false
+      enabled: true
+
+  jpa:
+
+    #Автогенерация схемы hibernate
+    #generate-ddl: false
+    generate-ddl: true
+
+    hibernate:
+      #ddl-auto: none
+      ddl-auto: create-drop
+
+    # Показываем запросы
+    show-sql: true

@@ -13,6 +13,9 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <!-- Spring-boot-starter-parent - это специальный стартер, который обеспечивает значения по умолчанию Maven.
+         Он также предоставляет раздел dependency-management (управления зависимостями),
+         так что вы можете опустить теги version для общераспространенных зависимостей. -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -50,6 +53,14 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+        </dependency>
+
+        <!-- Spring Data — дополнительный удобный механизм для взаимодействия с сущностями базы данных,
+             организации их в репозитории, извлечение данных, изменение -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
     </dependencies>
