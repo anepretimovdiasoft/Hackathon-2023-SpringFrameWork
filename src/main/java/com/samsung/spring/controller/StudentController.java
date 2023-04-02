@@ -30,7 +30,7 @@ public class StudentController {
 
     @PutMapping("/user")
     public User update(@RequestBody User user){
-        return userService.add(user);
+        return userService.update(user);
     }
 
     @DeleteMapping("/user")
