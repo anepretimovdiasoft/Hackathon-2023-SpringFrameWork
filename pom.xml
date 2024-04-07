@@ -63,6 +63,31 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+        <!-- Swagger — это набор инструментов для разработчиков API от SmartBear Software и бывшая спецификация,
+             на которой основана спецификация OpenAPI-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
+        <!--
+        Swagger для springboot 3.x+
+        ================================
+        application.yml конфигурация:
+        springdoc:
+            swagger-ui:
+                path: /swagger-ui.html
+                operationsSorter: method
+        ================================
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+        -->
+
+
     </dependencies>
 
 </project>

@@ -11,12 +11,5 @@ public class App {
 
     public static void main(String[] args) {
         SpringApplication.run(App.class);
-
-        try {
-            //Консоль для визуализации бд в браузере
-            Console.main(args);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }
