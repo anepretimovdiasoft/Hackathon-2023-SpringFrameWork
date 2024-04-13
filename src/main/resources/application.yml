@@ -23,3 +23,6 @@ spring:
 
     # Показываем запросы
     show-sql: true
+
+    # Своевременный запуск data.sql
+    defer-datasource-initialization: true
