@@ -3,7 +3,6 @@ package com.samsung.spring.controller;
 import com.samsung.spring.controller.dto.UserProfileDto;
 import com.samsung.spring.controller.dto.UserRegisterDto;
 import com.samsung.spring.domain.Authority;
-import com.samsung.spring.domain.User;
 import com.samsung.spring.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
