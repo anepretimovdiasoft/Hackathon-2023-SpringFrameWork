@@ -6,6 +6,7 @@ import com.samsung.spring.domain.Authority;
 import com.samsung.spring.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -51,5 +52,17 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteById(@PathVariable long id) {
         userService.deleteById(id);
+    }
+
+    @GetMapping("/username/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public UserProfileDto getByUsername(@PathVariable String username) {
+        return userService.getByUsername(username);
+    }
+
+    @GetMapping("/login")
+    @ResponseStatus(HttpStatus.OK)
+    public String login(Authentication authentication) {
+        return "Welcome, " + authentication.getName();
     }
 }

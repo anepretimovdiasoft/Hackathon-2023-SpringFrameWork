@@ -13,6 +13,8 @@ public interface UserService {
 
     UserProfileDto getById(long id);
 
+    UserProfileDto getByUsername(String username);
+
     UserProfileDto update(Long id, UserProfileDto userProfileDto);
 
     void update(Long id, Authority authority);

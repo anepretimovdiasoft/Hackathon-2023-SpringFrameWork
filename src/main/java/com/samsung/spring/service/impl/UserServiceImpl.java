@@ -6,6 +6,7 @@ import com.samsung.spring.dao.AuthorityRepository;
 import com.samsung.spring.dao.UserRepository;
 import com.samsung.spring.domain.Authority;
 import com.samsung.spring.domain.User;
+import com.samsung.spring.exception.UserNotFoundException;
 import com.samsung.spring.mapper.UserMapper;
 import com.samsung.spring.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -55,16 +56,32 @@ public class UserServiceImpl implements UserService {
     public UserProfileDto getById(long id) {
         Optional<User> userOptional = userRepository.findById(id);
 
-        if (!userOptional.isPresent()) throw new RuntimeException("User not found!");
+        if (!userOptional.isPresent()) throw new UserNotFoundException("User with ID " + id + " not found");
 
         return UserMapper.toUserProfileDto(userOptional.get());
+    }
+
+    @Override
+    public UserProfileDto getByUsername(String username) {
+        Optional<User> userOptional = userRepository.findByUsername(username);
+
+        if (!userOptional.isPresent()) throw new UserNotFoundException("User with username " + username + " not found");
+
+        User user = userOptional.get();
+        user.setId(-1L);
+        user.setName(null);
+        user.setEmail(null);
+        user.setPhone(null);
+        user.setPhotoUrl(null);
+
+        return UserMapper.toUserProfileDto(user);
     }
 
     @Override
     public UserProfileDto update(Long id, UserProfileDto userProfileDto) {
         Optional<User> userOptional = userRepository.findById(id);
 
-        if (!userOptional.isPresent()) throw new RuntimeException("User not found!");
+        if (!userOptional.isPresent()) throw new UserNotFoundException("User with ID " + id + " not found");
 
         User user = userOptional.get();
         if (userProfileDto.getName() != null) user.setName(userProfileDto.getName());
@@ -79,7 +96,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update(Long id, Authority authority) {
         Optional<User> userOptional = userRepository.findById(id);
-        if (!userOptional.isPresent()) throw new RuntimeException("User not found!");
+        if (!userOptional.isPresent()) throw new UserNotFoundException("User with ID " + id + " not found");
         Optional<Authority> authorityOptional = authorityRepository.findByAuthority(authority.getAuthority());
         if (!authorityOptional.isPresent()) throw new RuntimeException("Authority not found!");
 
@@ -96,7 +113,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteById(long id) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User with ID " + id + " not found"));
+                .orElseThrow(() -> new UserNotFoundException("User with ID " + id + " not found"));
 
         userRepository.delete(user);
     }
