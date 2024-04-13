@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("User already exists");
 
         Optional<Authority> authorityOptional = authorityRepository.findByAuthority("ROLE_USER");
-        if (!authorityOptional.isPresent()) throw new RuntimeException("ROLE_USER not found!");
+        if (!authorityOptional.isPresent()) throw new RuntimeException("Authority not found!");
 
         User user = UserMapper.toUserEntity(userRegisterDto);
         user.setPassword(passwordEncoder.encode(userRegisterDto.getPassword()));
