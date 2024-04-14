@@ -56,8 +56,9 @@ public class UserController {
 
     @GetMapping("/username/{username}")
     @ResponseStatus(HttpStatus.OK)
-    public UserProfileDto getByUsername(@PathVariable String username) {
-        return userService.getByUsername(username);
+    public String getByUsername(@PathVariable String username) {
+        UserProfileDto userProfileDto = userService.getByUsername(username);
+        return "User " + userProfileDto.getUsername() + " is registered";
     }
 
     @GetMapping("/login")
