@@ -62,7 +62,7 @@ public class UserController {
 
     @GetMapping("/login")
     @ResponseStatus(HttpStatus.OK)
-    public String login(Authentication authentication) {
-        return "Welcome, " + authentication.getName();
+    public UserProfileDto login(Authentication authentication) {
+        return userService.getByUsername(authentication.getName());
     }
 }

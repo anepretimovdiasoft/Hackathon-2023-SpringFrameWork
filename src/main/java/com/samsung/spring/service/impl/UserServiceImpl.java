@@ -67,14 +67,7 @@ public class UserServiceImpl implements UserService {
 
         if (!userOptional.isPresent()) throw new UserNotFoundException("User with username " + username + " not found");
 
-        User user = userOptional.get();
-        user.setId(-1L);
-        user.setName(null);
-        user.setEmail(null);
-        user.setPhone(null);
-        user.setPhotoUrl(null);
-
-        return UserMapper.toUserProfileDto(user);
+        return UserMapper.toUserProfileDto(userOptional.get());
     }
 
     @Override
