@@ -6,6 +6,7 @@ import com.samsung.spring.dao.AuthorityRepository;
 import com.samsung.spring.dao.UserRepository;
 import com.samsung.spring.domain.Authority;
 import com.samsung.spring.domain.User;
+import com.samsung.spring.exception.UserAlreadyExistsException;
 import com.samsung.spring.exception.UserNotFoundException;
 import com.samsung.spring.mapper.UserMapper;
 import com.samsung.spring.service.UserService;
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserProfileDto add(UserRegisterDto userRegisterDto) {
         if (userRepository.findByUsername(userRegisterDto.getUsername()).isPresent())
-            throw new RuntimeException("User already exists");
+            throw new UserAlreadyExistsException("User already exists");
 
         Optional<Authority> authorityOptional = authorityRepository.findByAuthority("ROLE_USER");
         if (!authorityOptional.isPresent()) throw new RuntimeException("Authority not found!");
